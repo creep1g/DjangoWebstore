@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} – {{ searched }}{% endblock %}
+{% block content %}
+
+    {% if searched %}
+        <h1>You searched for {{ searched }}</h1> <br/>
+         <div class="row align-items-stretch gap-4 flex-column flex-sm-row d-flex">
+        {% for cereal in cereals %}
+            <a
+                href="{% url 'details' cereal.id %}"
+                class="soc-cereal_wrapper p-3 bg-light flex-fill col-3 d-flex rounded shadow-sm"
+            >
+                <span class="border me-2 w-50">
+                    <img class="img-fluid img-thumbnail" src="{{ cereal.image.url }}" alt="{{ cereal.name }}" />
+                </span>
+                <span class="flex-fill">
+                    <div class="fw-bold">{{ cereal.name }}</div>
+                    <div>Made by {{ cereal.manufacturer }}</div>
+                    <span>{{ cereal.price|floatformat:0 }} ISK</span>
+                    <span><i class="bi-cart4"></i></span>
+                </span>
+            </a>
+
+        {% endfor %}
+         </div>
+    {% else %}
+        <h1>Not sure what to look for?</h1>
+        <h2>Checkout <a href="{% url 'catalogue' %}">our product range</a>!</h2>
+    {% endif %}
+
+{% endblock %}

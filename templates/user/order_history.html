@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>Order history</h1>
+ <div class="rounder border my-3 p-3 bg-light">
+
+     {% for id, cart in orders.items %}
+    <span class="p-2 fw-bolder">Order nr. {{ id }}</span><br/>
+    <span class="p-2 small">{{ cart.order_time }}</span>
+    <div class="p-2 mb-3">
+        {% for key, product in cart.items %}
+        <div class="border-start ps-2 d-flex flex-nowrap flex-row text-nowrap border-bottom">
+            {% for key, value in product.items %}
+
+                {% ifnotequal 'userid' key %}
+                    {%ifequal 'quantity' key%}
+                    <div class="order-1 pe-3">
+                        {{ value }}
+                    </div>
+                    {% endifequal %}
+                    {%ifequal 'name' key %}
+                    <div class="order-2 fst-italic flex-fill">
+                        {{ value }}
+                    </div>
+                    {% endifequal %}
+                    {%ifequal 'item_total' key%}
+                    <div class="order-3">
+                        {{ value|floatformat:0 }} ISK
+                    </div>
+                    {% endifequal %}
+                {% endifnotequal %}
+
+            {% endfor %}
+
+            {% ifequal 'order_total' key %}
+                <div class="w-100 my-2 align-self-right">
+                    Total: <strong>{{ product|floatformat:0 }} ISK</strong>
+                </div>
+            {% endifequal %}
+            <div class="order-1 pe-3">
+                {% ifequal 'order_id' key %}
+                    Order ID: {{ product }}
+                {% endifequal %}
+            </div>
+
+
+
+        </div>
+        {% endfor %}
+    </div>
+    {% empty %}
+    <div class="p-3 bg-light">
+         <span>Sorry but you seem to have no orders!</span><br/>
+         <span>Head to the <a href="{%  url 'catalogue' %}">catalogue</a> to buy some delicious cereal</span>
+    </div>
+    {% endfor %}
+ </div>
+</div>
+<a href="{% url 'profile_view'  %}" class="btn btn-primary p-3">
+    <i class="bi"></i>
+    Back To Profile&nbsp;
+</a>
+
+{% endblock %}

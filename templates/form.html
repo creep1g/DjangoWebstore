@@ -1,0 +1,17 @@
+<div class="bg-light border my-3">
+{% for field in form %}
+    <div class="fieldWrapper my-3">
+        {{ field.label_tag }} 
+        {% if field.errors %}
+        <span class="soc-error_input">
+            {{ field }}
+        </span>
+        <div class="soc-form_validation_error p-2 mt-3 bg-danger">
+            {{ field.errors }}
+        </div>
+        {% else %}
+            {{ field }}
+        {% endif %}
+    </div>
+{% endfor %}
+</div>

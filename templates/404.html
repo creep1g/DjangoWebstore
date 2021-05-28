@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>404 page not found</h1>
+    <div class="p-3 bg-light">
+        <div class="fw-bolder mb-3 lead">Whoops, you seem to have stumbled upon an empty cereal bowl!</div>
+        Please <a href="{%  url 'cereal-index' %}">head back</a> to fill it!
+    </div>
+{% endblock %}

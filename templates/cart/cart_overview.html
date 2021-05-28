@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load cart_tag %}
+
+{% block content %}
+<div>
+    <h1>Order overview:</h1>
+    <div class="my-3">
+        <a class="btn" href="{% url 'shipping_information' %}">Shipping information</a>
+        <span class="mx-3">&rarr;</span>
+        <a class="btn" href="{% url 'payment_information' %}">Payment information</a>
+        <span class="mx-3">&rarr;</span>
+        <a class="btn btn-primary" href="{% url 'order_overview' %}">Order overview</a>
+    </div>
+
+    You are about to purchase these items: <br />
+    <div class="rounder border my-3 p-3 bg-light">
+    {% for key,value in request.session.cart.items %}
+        <div>
+            <span>{{ value.quantity }}</span>
+            <em>{{ value.name }}</em> for
+            {{ value.price|multiply:value.quantity|floatformat:0 }} ISK
+        </div>
+        
+    {% endfor %}
+    </div>
+
+    <div class="my-3">
+        For a total of:
+        <div class="bg-light border bolder p-3">
+            <span>{{ sum|floatformat:0 }} ISK</span>
+        </div>
+        {# <span>Total {{ value.price|multiply:value.quantity }}</span> #}
+    </div>
+
+    <div class="my-3">
+        Sent to:
+        <div class="bg-light border p-3">
+            <div>
+                {{ user.first_name }}
+                {{ user.last_name }}
+            </div>
+            <div>
+                {{ user.location_id }}<br/>
+                {{ user.zipcode }} {{ user.city }}<br/>
+                {{ user.street_name }}, {{ user.house_number }}
+            </div>
+        </div>
+    </div>
+
+    <div class="my-3">
+        <a href="{% url 'cart_clear' %}" class="btn btn-secondary p-3 me-2">
+            <i class="bi bi-x-circle-fill"></i>
+            &nbsp;Cancel the whole damn thing! &nbsp;
+        </a>
+        <a
+            href="{% url 'order_confirmation' %}"
+            class="btn btn-success p-3"
+        >
+            Place the order
+        </a>
+    </div>
+</div>
+{% endblock %}

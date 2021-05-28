@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>Shipping information:</h1>
+    {# {% include 'cart_nav.html' with cur_page='ship' %} #}
+    <div>
+        <a class="btn btn-primary" href="{% url 'shipping_information' %}">Shipping information</a>
+        <span class="mx-3">&rarr;</span>
+        <span class="" href="{% url 'payment_information' %}">Payment information</span>
+        <span class="mx-3">&rarr;</span>
+        <span class="">Order overview</span>
+    </div>
+
+    <form class="form form-horizontal soc-form soc-form_shipping" method="post">
+        {% csrf_token %}
+        {% include 'form.html' with form=form %}
+
+        <div class="my-3">
+            <a href="{% url 'cart_detail' %}" class="btn btn-secondary p-3 me-2">
+                <i class="bi bi-x-circle-fill"></i>
+                &nbsp;Cancel Order &nbsp;
+            </a>
+            <input
+                type="submit"
+                class="btn btn-success p-3"
+                value="Continue to payment information"
+            />
+        </div>
+    </form>
+
+</div>
+{% endblock %}

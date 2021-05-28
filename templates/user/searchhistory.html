@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Search history</h1>
+<div class="bg-light border content mb-2 py-3 p-2">
+    <ol>
+        {% for search in search_history %}
+        <li class="my-2">
+            <form name="search_links" method="post" action="{% url 'search_cereal' %}">
+                {% csrf_token %}
+                <input type="hidden" name="searched" value="{{ search.query }}" />
+                <button type="submit" class="bg-light border-0">
+                    <span class="text-black-50">Search for</span>
+                    <span class="font-monospace">{{ search.query }}</span>
+                </button>
+            </form>
+        </li>
+        {% empty %}
+    <div class="p-3 bg-light">
+         <span>Your searches will appear hear... </span><br/>
+         <span>Don't know what you're looking for?  Try browsing our <a href="{%  url 'catalogue' %}">catalogue</a>!</span>
+    </div>
+        {% endfor %}
+    </ol>
+</div>
+<a href="{% url 'profile_view'  %}" class="btn btn-primary p-3">
+    <i class="bi"></i>
+    Back To Profile&nbsp;
+</a>
+
+{% endblock %}

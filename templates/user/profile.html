@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {{ form.media }}
+        <input type="submit" class="btn btn-primary mt-3" value="Update" />
+    </form>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    {% if order %}
+    <h1>Order complete!</h1>
+     <div class="p-2 bg-light">
+        <div class="fw-bold">Order nr. {{ order_id }}</div>
+        {% for product in order.values %}
+        <div class="border p-2 my-2">
+            {% for key, value in product.items %}
+                {% ifnotequal 'userid' key %}
+                    {% ifequal 'product_id' key %}
+                        <span>Product Id: {{value}}</span><br/>
+                    {% endifequal %}
+
+                    {% ifequal 'name' key %}
+                        <span>Product: {{ value }}</span><br/>
+                    {% endifequal %}
+
+                    {%ifequal 'quantity' key%}
+                        <span>Quantity: {{ value }}</span><br/>
+                    {% endifequal %}
+
+                    {%ifequal 'price' key%}
+                        <span>Price: {{ value|floatformat:0 }} ISK</span><br/>
+                    {% endifequal %}
+                {% endifnotequal %}
+            {% endfor %}
+        </div>
+         {% endfor %}
+
+        <div class="my-2">
+            <div class="fw-bold">Send to:</div>
+            <div class="border p-2 my-2">
+                <div>Name: {{ user.first_name }} {{ user.last_name }}</div>
+                <div>Email: {{ user.email }}</div>
+                <div>Country: {{ user.location_id.country }}</div>
+                <div>City: {{ user.city }}</div>
+                <div>zip: {{ user.zipcode }}</div>
+                <div>Address: {{ user.street_name }} {{ user.house_number }}</div>
+            </div>
+        </div>
+
+        <div class="my-3"><a href="{% url 'catalogue' %}">&larr; Back to catalogue</a></div>
+  </div>
+    {% else %}
+        <h1>{{ message }}</h1>
+        <span>Head back to the <a href="{% url 'catalogue' %}">catalogue</a> to add to your cart</span>
+    {% endif %}
+</div>
+{% endblock %}

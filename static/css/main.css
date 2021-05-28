@@ -1,0 +1,151 @@
+.navbar-light .navbar-nav .nav-link {
+    color: #dab581;
+    /* color: #900; */
+    /* font-weight: bold; */
+    /* text-transform: uppercase; */
+    font-family: 'UnifrakturCook', sans-serif !important;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+    padding-top: 36px;
+}
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:active {
+    color: #f0f0f0;
+}
+.navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+.container-md {
+    padding-top: 2rem;
+}
+
+body {
+    background-color: #faf5ee;
+}
+header {
+    /* font-family: 'Cinzel Decorative', sans-serif !important; */
+    text-transform: capitalize;
+    background: #012537;
+    padding-bottom: 4px;
+}
+h1, h2, h3, h4, h5 {
+    font-family: 'Cinzel Decorative', sans-serif !important;
+    /* font-family: 'UnifrakturCook', sans-serif !important; */
+    /* font-family: 'Averia Serif Libre', sans-serif !important; */
+    color: #042a3b;
+    font-weight: bold;
+    /* text-decoration: underline;
+    text-decoration-color: #dab581; */
+    /* letter-spacing: 0.02em;
+    text-transform: uppercase; */
+    margin: 0.2em 0 0.2em 0.1em;
+}
+.soc-cereal_wrapper {
+    color: black;
+    text-decoration: none;
+    max-width: 32%;
+}
+.soc-header img {
+    max-width: 480px;
+}
+.soc-cracker_wrap {
+    list-style: none;
+}
+.soc-catalogue_item {
+    border: 1px solid #000;
+}
+.soc-sortby_pill {
+    background: #042a3b;
+    color: #dfdfdf;
+    text-decoration: none;
+}
+.soc-sortby_pill:hover,
+.soc-sortby_pill:active {
+    color: #fff;
+    background: #2a2a2a;
+}
+.soc-form label {
+    text-align: right;
+    width: 240px;
+}
+.soc-form_validation_error {
+    max-width: 480px;
+    text-align: center;
+}
+.soc-form_validation_error ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #f9f9f9;
+}
+.soc-error_input input {
+    border: 1px solid #dc3545;
+    border-radius: 2px;
+}
+
+/* Dropdown */
+.dropbtn {
+  background-color: #000;
+  color: white;
+  padding: 5px;
+  font-size: 10px;
+  border: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #dfdfdf;
+}
+
+.carousel.slide{
+    width: 250px;
+    max-height: 250px;
+
+}
+
+.carousel-item{
+    width: 250px;
+    height: 300px;
+}
+
+.carousel-control-prev {
+    background-color: lightgray;
+    margin-top: 200px;
+    height:50px;
+}
+
+.carousel-control-next {
+    background-color: lightgray;
+    margin-top: 200px;
+    height:50px;
+}

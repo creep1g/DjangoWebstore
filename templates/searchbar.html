@@ -1,0 +1,8 @@
+{% load static %}
+<div>
+    <form class="d-flex" method="POST" action="{% url 'search_cereal' %}">
+        {% csrf_token %}
+        <input class="form-control me-2 shadow-sm" type="search" placeholder="Search..." name="searched">
+        <button class="btn btn-dark shadow-sm" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+</div>

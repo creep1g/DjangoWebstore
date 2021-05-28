@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} – All Cereals {% endblock %}
+{% block content %}
+    <h1 class="pt-4 pb-2">The Connoisseurs Choice!</h1>
+    <div class="my-3">
+        <span>Sort by:</span>
+        <a class="soc-sortby_pill p-2 rounded align-baseline" href="{% url 'catalogue' %}?order_by=name">name</a>
+        <a class="soc-sortby_pill p-2 rounded align-baseline" href="{% url 'catalogue' %}?order_by=price">price</a>
+        <a class="soc-sortby_pill p-2 rounded align-baseline" href="{% url 'catalogue' %}?order_by=manufacturer">brand</a>
+
+    <span>or filter by:</span>
+    <div class="dropdown">
+        <button class="soc-sortby_pill px-1 rounded align-baseline">
+            <i class="bi bi-filter"></i>
+        </button>
+        <div class="dropdown-content" >
+            <a href="{% url 'catalogue' %}">Show all</a>
+            <a href="{% url 'catalogue' %}?filter=Healthy">Healthy</a>
+            <a href="{% url 'catalogue' %}?filter=Vegan">Vegan</a>
+            <a href="{% url 'catalogue' %}?filter=Gluten Free">Gluten Free</a>
+            <a href="{% url 'catalogue' %}?filter=Sugary">Sugary</a>
+            <a href="{% url 'catalogue' %}?filter=Chocolatey">Chocolatey</a>
+            <a href="{% url 'catalogue' %}?filter=Deadly">Deadly</a>
+        </div>
+    </div>
+    </div>
+    <div class="row row-cols-auto gap-4 flex-column flex-sm-row">
+        {% for cereal in cereals %}
+            <a
+                href="{% url 'details' cereal.id %}"
+                class="soc-cereal_wrapper p-3 bg-light flex-fill col-3 d-flex rounded shadow-sm"
+            >
+                <span class="border me-2 w-25">
+                    <img class="img-fluid img-thumbnail" src="{{ cereal.image.url }}" alt="{{ cereal.name }}" />
+                </span>
+                <span class="flex-fill">
+                    <div class="fw-bold">{{ cereal.name }}</div>
+                    <div>Made by {{ cereal.manufacturer }}</div>
+                    <span>{{ cereal.price|floatformat:0 }} ISK</span>
+                    <span><i class="bi-cart4"></i></span>
+                </span>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

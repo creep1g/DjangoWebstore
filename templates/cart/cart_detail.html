@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load cart_tag %}
+
+{% block content %}
+{%  if request.session.cart|length == 0 %}
+
+<div>
+    This cart needs to get more cereals ...
+    <a class="fw-bold" href="{% url 'catalogue' %}">To the catalogue!</a>
+</div>
+
+{% else %}
+
+<div>
+    <h3>The Chosen Ones:</h3>
+    {% for key,value in request.session.cart.items %}
+    <div class="rounder border my-3 p-3 bg-light">
+        <div><img src="{{ value.image }}" class="img-fluid img-thumbnail w-25" style="max-width: 180px;" /></div>
+        <div class="p-2 pb-0">
+            <em>{{ value.name }}</em> &ndash; {{ value.price|floatformat:0 }} ISK
+        </div>
+        <div class="p-2">
+        {% if value.quantity > 1 %}
+            <span>{{ value.quantity }} boxes: </span>
+            <span>{{ value.price|multiply:value.quantity|floatformat:0 }} kr.</span>
+            <a href="{% url 'item_increment' value.product_id %}"><i class="bi bi-arrow-up"></i></a>
+            <a href="{% url 'item_decrement' value.product_id %}"><i class="bi bi-arrow-down"></i></a>
+        {% else %}
+            <span>{{ value.quantity }} box: </span>
+            <span>{{ value.price|floatformat:0 }} kr.</span>
+            <a href="{% url 'item_increment' value.product_id %}"><i class="bi bi-arrow-up"></i></a>
+            <a href="{% url 'item_clear' value.product_id %}"><i class="bi bi-arrow-down"></i></a></span><br>
+        {% endif %}
+        </div>
+        <span>
+            <a 
+                class="btn border"
+                href="{% url 'item_clear' value.product_id %}"
+                title="Remove {{value.name}} from cart"
+            >
+                <i class="bi bi-x-circle-fill button"></i>
+                Remove
+            </a>
+        </span>
+    </div>
+
+    {% endfor %}
+    <div class="p-2 mb-3 h4">
+        Total: <u>{{ sum|floatformat:0 }} ISK</u>
+    </div>
+    <a href="{% url 'cart_clear' %}" class="btn btn-danger p-3">
+        &nbsp; Clear Cart &nbsp;
+    </a>
+    <a href="{% url 'shipping_information' %}" class="btn btn-success p-3">
+        &nbsp; Buy! Buy! Buy! &nbsp;
+    </a>
+
+</div>
+<div class="my-3">Still needs more cereals? <a href="{% url 'catalogue' %}">To the catalogue!</a></div>
+{% endif %}
+
+{% endblock %}

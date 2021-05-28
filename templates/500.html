@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>500 internal server error</h1>
+    <div class="p-3 bg-light">
+        <div class="fw-bolder mb-3 lead">Whoops, somebody spilled the milk!</div>
+        Please <a href="{%  url 'cereal-index' %}">head back</a> and forget this ever happened.
+    </div>
+{% endblock %}

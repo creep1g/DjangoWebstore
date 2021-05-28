@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>You have entered SHIP O' CEREAL... super cereasly!</h1>
+    <br/>
+    <div class="h2 pb-2">Here are our staff picks</div>
+    <div class="row align-content-start gap-4 flex-column flex-sm-row">
+        {% for cereal in cereals %}
+            <a
+                href="{% url 'details' cereal.id %}"
+                class="p-3 bg-light flex-fill col-4 d-flex rounded shadow-sm"
+                style="color: black; text-decoration: none;"
+            >
+                <span class="border me-2 w-25">
+                    <img class="img-fluid img-thumbnail" src="{{ cereal.image.url }}" alt="{{ cereal.name }}" style="width:200px;" />
+                </span>
+                <span class="flex-fill">
+                    <div class="fw-bold">{{ cereal.name }}</div>
+                    <span>{{ cereal.price|floatformat:0 }} ISK</span>
+                </span>
+            </a>
+        {% endfor %}
+    </div>
+    <a class="fw-bolder nav-link h5" href="{% url 'catalogue' %}">Click here for more cereal</a>
+
+{% endblock %}
